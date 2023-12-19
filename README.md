@@ -12,6 +12,8 @@ after
 npm start
 ```
 
+Scan the QR code that appears on the terminal
+
 ## Contributors
 
 Me
