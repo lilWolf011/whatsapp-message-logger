@@ -1,14 +1,23 @@
 # whatsapp-message-logger
 You will be able to save ALL images and messages (including once viewed messages) from Whatsapp in every detail.
 
-### Kullanım
+### Usage
 
-Projenin nasıl kullanılacağına dair temel bilgileri buraya ekleyin.
+```javascript
+npm install
+```
+after 
 
-## Katkıda Bulunma
+```javascript
+npm start
+```
+
+## Contributors
 
 Me
 
-## Lisans
+## Licence
 
-Bu proje MIT altında lisanslanmıştır - Detaylar için [LİSANS DOSYASI](LICENSE) dosyasına bakın.
+This project is licensed by MIT - See [LICENSE FILE](LICENSE) for details.
+
+please star! ><
