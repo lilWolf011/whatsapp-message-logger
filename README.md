@@ -18,6 +18,7 @@ Scan the QR code that appears on the terminal\n
 ## Contributors
 
 lilWolf
+
 Selimdur
 
 ## Licence
