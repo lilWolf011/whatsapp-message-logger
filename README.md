@@ -12,6 +12,29 @@ after
 npm start
 ```
 
+Scan the QR code that appears on the terminal\n
+!!!If you close the terminal, the logging process will not continue working.!!!
+
+## Contributors
+
+Me
+
+## Licence
+
+This project is licensed by MIT - See [LICENSE FILE](LICENSE) for details.
+
+please star! ><
+
+```
+after 
+
+```javascript
+npm start
+```
+
+Scan the QR code that appears on the terminal\n
+!!!If you close the terminal, the logging process will not continue working.!!!
+
 ## Contributors
 
 Me
