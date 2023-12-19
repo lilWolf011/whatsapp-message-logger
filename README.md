@@ -1,4 +1,7 @@
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
 # whatsapp-message-logger
+
 You will be able to save ALL images and messages (including once viewed messages) from Whatsapp in every detail.
 
 ### Usage
@@ -6,7 +9,8 @@ You will be able to save ALL images and messages (including once viewed messages
 ```javascript
 npm install
 ```
-after 
+
+after
 
 ```javascript
 npm start
