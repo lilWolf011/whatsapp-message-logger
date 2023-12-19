@@ -12,7 +12,8 @@ after
 npm start
 ```
 
-Scan the QR code that appears on the terminal\n
+Scan the QR code that appears on the terminal
+
 !!!If you close the terminal, the logging process will not continue working.!!!
 
 ## Contributors
