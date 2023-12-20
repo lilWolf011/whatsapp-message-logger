@@ -4,7 +4,7 @@ const path = require("path");
 const qrcode = require("qrcode-terminal");
 const { Client, NoAuth } = require("whatsapp-web.js");
 
-// const axios = require("axios")
+const axios = require("axios");
 
 const client = new Client({
   authStrategy: new NoAuth(),
@@ -23,7 +23,7 @@ async function postMessageToWebhook(embeds) {
   let data = JSON.stringify({ embeds });
   let config = {
     method: "POST",
-    url: 'YOUR WEBHOOK URL', // https://discord.com/webhook/url/here 
+    url: 'WEBHOOK URL HERE', // url: 'https://discord.com/webhook/url/here ',
     headers: { "Content-Type": "application/json" },
     data: data,
  };
@@ -41,13 +41,14 @@ async function postMessageToWebhook(embeds) {
 }
 */
 client.on("message", async (msg) => {
-  const time = new Date(msg.timestamp * 1000)
+  const date = new Date().toISOString().substring(0, 10);
+  const time = new Date();
+  const formattedTime = time
     .toISOString()
     .replace(/T/, " ")
-    .replace(/\..+/, "")
     .split(" ")[1]
-    .replace(/:/g, "-");
-  const date = new Date(msg.timestamp * 1000).toISOString().substring(0, 10);
+    .split(".")[0];
+  const fullDate = date + "_" + formattedTime;
 
   const person = msg._data.notifyName;
   const phoneNumber = msg.from.replace(/@c.us/g, "");
@@ -63,7 +64,7 @@ client.on("message", async (msg) => {
     await mkdir(folder, { recursive: true });
     const filename = path.join(
       folder,
-      `${time}_${msg.id.id}.${media.mimetype.split("/")[1]}`,
+      `${formattedTime}_${msg.id.id}.${media.mimetype.split("/")[1]}`,
     );
     await writeFile(
       filename,
@@ -76,7 +77,7 @@ client.on("message", async (msg) => {
       {
         Number: phoneNumber,
         Person: person,
-        Date: date,
+        Date: fullDate,
         Message: message,
       },
     ];
@@ -101,19 +102,22 @@ client.on("message", async (msg) => {
         fields: [
           {
             name: "Phone Number",
-            value: `${phoneNumber}`
+            value: `${phoneNumber}`,
+            inline: true
           },
           {
             name: "Person",
-            value: `${person}`
+            value: `${person}`,
+            inline: true
           },
           {
             name: "Message",
-            value: `${message}`
+            value: `${message}`,
+            inline: true
           }
         ],
         footer: {
-          text: `Date • ${date.toISOString()}`
+          text: `Date • ${fullDate}`
         },
       },
     ];
