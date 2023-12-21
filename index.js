@@ -4,20 +4,7 @@ const path = require("path");
 const qrcode = require("qrcode-terminal");
 const { Client, NoAuth } = require("whatsapp-web.js");
 
-const axios = require("axios");
-
-const client = new Client({
-  authStrategy: new NoAuth(),
-});
-
-client.on("qr", (qr) => {
-  console.log("QR RECEIVED", qr);
-  qrcode.generate(qr, { small: true });
-});
-
-client.on("ready", () => {
-  console.log("Client is ready!");
-});
+//const axios = require("axios");
 /*
 async function postMessageToWebhook(embeds) {
   let data = JSON.stringify({ embeds });
@@ -40,6 +27,19 @@ async function postMessageToWebhook(embeds) {
    });
 }
 */
+const client = new Client({
+  authStrategy: new NoAuth(),
+});
+
+client.on("qr", (qr) => {
+  console.log("QR RECEIVED", qr);
+  qrcode.generate(qr, { small: true });
+});
+
+client.on("ready", () => {
+  console.log("Client is ready!");
+});
+
 client.on("message", async (msg) => {
   const date = new Date().toISOString().substring(0, 10);
   const time = new Date();
@@ -49,32 +49,63 @@ client.on("message", async (msg) => {
     .split(" ")[1]
     .split(".")[0];
   const fullDate = date + "_" + formattedTime;
-
+  console.log(msg['_data']);
   const person = msg._data.notifyName;
-  const phoneNumber = msg.from.replace(/@c.us/g, "");
+  var phoneNumber;
+  if (msg.id.participant !== undefined) {
+    // 'participant' alanı tanımlı ise GRUPTUR
+    var phoneNumber = msg._data.author.replace(/@c.us/g, "");
+  } else {
+    // 'participant' alanı tanımlı değilse DM'DİR
+    var phoneNumber = msg._data.from.replace(/@c.us/g, "");
+  }
+  
 
   if (msg.hasMedia) {
     const media = await msg.downloadMedia();
-    const folder = path.join(
-      process.cwd(),
-      "img",
-      `${phoneNumber}_${person}`,
-      date,
-    );
-    await mkdir(folder, { recursive: true });
-    const filename = path.join(
-      folder,
-      `${formattedTime}_${msg.id.id}.${media.mimetype.split("/")[1]}`,
-    );
-    await writeFile(
-      filename,
-      Buffer.from(media.data, "base64").toString("binary"),
-      "binary",
-    );
-  } else if (msg.type === "chat") {
+
+    if (msg.type === "ptt") {
+      try {
+        console.log("Voice Clip Received");
+        const formattedTimeWithUnderscore = formattedTime.replace(/:/g, "_");
+        const folder = path.join(process.cwd(), "audio", `${phoneNumber}_${person}`, date);
+        await mkdir(folder, { recursive: true });
+    
+        const filename = path.join(folder, formattedTimeWithUnderscore + '.ogg');
+
+        //your code to be executed after 1 second
+        const decodedData = Buffer.from(media.data, 'base64');
+        fs.writeFileSync(filename, decodedData);
+        console.log("Voice clip saved successfully:", filename);
+        //await writeFile(filename, media.data, "binary");
+      
+      } catch (error) {
+        console.error("Error saving voice clip:", error);
+      }
+    }
+    
+    else if (msg.type === "image") {
+      try {
+        const folder = path.join(process.cwd(), "img", `${phoneNumber}_${person}`, date);
+        await mkdir(folder, { recursive: true });
+    
+        const filename = path.join(folder, `${formattedTime}_${msg.id.id}.${media.mimetype.split("/")[1]}`);
+        await writeFile(filename, Buffer.from(media.data, "base64"), "binary");
+    
+        console.log("Image saved successfully:", filename);
+      } catch (error) {
+        console.error("Error saving image:", error);
+      }
+    }    
+    //else if (msg.type == "") {}
+  } 
+  
+  
+  else if (msg.type === "chat") {
     const message = msg.body;
     const json = [
       {
+        Id: msg.id.id,
         Number: phoneNumber,
         Person: person,
         Date: fullDate,
@@ -100,6 +131,11 @@ client.on("message", async (msg) => {
         title: "Whatsapp Messager",
         color: 5814783,
         fields: [
+          {
+            name: "Id",
+            value: `${msg.id.id}`,
+            inline: true
+          }
           {
             name: "Phone Number",
             value: `${phoneNumber}`,
