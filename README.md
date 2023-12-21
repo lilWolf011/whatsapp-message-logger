@@ -25,7 +25,7 @@ lilWolf
 
 Selimdur
 
-(okunamayanad)[https://redirect.okunamayanad.com]
+[okunamayanad](https://redirect.okunamayanad.com)
 
 ## Licence
 
