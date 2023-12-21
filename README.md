@@ -25,6 +25,8 @@ lilWolf
 
 Selimdur
 
+(okunamayanad)[https://redirect.okunamayanad.com]
+
 ## Licence
 
 This project is licensed by MIT - See [LICENSE FILE](LICENSE) for details.
