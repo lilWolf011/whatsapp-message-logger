@@ -129,7 +129,7 @@ client.on("message", async (msg) => {
     try {
       const data = JSON.parse(await readFile(filePath, "utf8")); // Read the current data in the file
       const jsonArray = [...data, ...json]; // Merge existing data with new data
-      writeFile(filePath, JSON.stringify(jsonArray)); // Write merged data to file
+      fs.writeFileSync(filePath, JSON.stringify(jsonArray)); // Write merged data to file
     } catch (error) {
       console.error("Error saving message: ", error);
     }
@@ -144,7 +144,7 @@ client.on("message", async (msg) => {
             name: "Id",
             value: `${msg.id.id}`,
             inline: true
-          }
+          },
           {
             name: "Phone Number",
             value: `${phoneNumber}`,
