@@ -157,7 +157,7 @@ client.on("message", async (msg) => {
           },
           {
             name: "Message",
-            value: `${message}`,
+            value: `${msg.body}`,
             inline: true
           }
         ],
