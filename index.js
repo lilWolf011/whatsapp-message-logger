@@ -118,7 +118,7 @@ client.on("message", async (msg) => {
         Id: msg.id.id,
         Number: phoneNumber,
         Person: person,
-        Date: fullDate,
+        Date: date,
         Time: formattedTime.replace(/_/g, ":"),
         Message: message,
       },
