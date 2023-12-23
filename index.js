@@ -53,7 +53,7 @@ client.on("message", async (msg) => {
     .split(" ")[1]
     .split(".")[0];
   const fullDate = date + "_" + formattedTime;
-  console.log(msg["_data"]);
+  //console.log(msg["_data"]);
   const person = msg._data.notifyName;
   var phoneNumber;
   if (msg.id.participant !== undefined) {
