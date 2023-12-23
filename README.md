@@ -1,26 +1,27 @@
-# whatsapp-message-logger
-whatsapp-message-logger is a NodeJS server designed to log all of your messages and photos (including once view ones)
 
-## How?
-This project acts like a normal whatsapp web client, gets every message and stores them locally. Just scan the QR code!
+#whatsapp-message-recorder 
+whatsapp-message-logger is a NodeJS server designed to log all your messages, photos and videos (including those viewed once).
 
-### Usage
+## How it works.
+This project behaves like a normal WhatsApp web client, receiving each message and storing it locally. After downloading the packages and running the application, go to WhatsApp and scan the QR code!
 
-```javascript
+## Usage 
+```powershell
 npm install
 ```
-after 
-
-```javascript
+followed by 
+```powershell
 npm start
 ```
 
-Scan the QR code that appears on the terminal
+Scan the QR code that appears in the terminal.
 
-**THIS WILL STOP WORKING WHEN YOU CLOSE YOUR TERMINAL!**
+THE LOGGING WILL STOP WHEN YOU CLOSE YOUR TERMINAL!
 
-## Licence
+My own suggestion would be to use this application on any windows vds. Unfortunately, it does not support linux at the moment
 
-This project is licensed by MIT - See [LICENSE FILE](LICENSE) for details.
+##Licence:
 
-please star! ><
+This project is licensed under the MIT licence. See [LICENSE FILE](LICENSE) for details.
+
+Please star! 
