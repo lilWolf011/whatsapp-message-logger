@@ -19,14 +19,6 @@ Scan the QR code that appears on the terminal
 
 **THIS WILL STOP WORKING WHEN YOU CLOSE YOUR TERMINAL!**
 
-## Contributors
-
-lilWolf
-
-Selimdur
-
-[okunamayanad](https://redirect.okunamayanad.com)
-
 ## Licence
 
 This project is licensed by MIT - See [LICENSE FILE](LICENSE) for details.
