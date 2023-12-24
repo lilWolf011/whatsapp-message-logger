@@ -4,9 +4,13 @@
 
 You will be able to save ALL images and messages (including once viewed messages) from Whatsapp in every detail.
 
-### Usage
+whatsapp-message-logger is a NodeJS server designed to log all your messages, photos and videos (including those viewed once).
 
-```javascript
+## How it works.
+This project behaves like a normal WhatsApp web client, receiving each message and storing it locally. After downloading the packages and running the application, go to WhatsApp and scan the QR code!
+
+## Usage 
+```powershell
 npm install
 ```
 
@@ -16,35 +20,18 @@ after
 npm start
 ```
 
-Scan the QR code that appears on the terminal\n
-!!!If you close the terminal, the logging process will not continue working.!!!
+Scan the QR code that appears in the terminal.
 
-## Contributors
+## Important
 
-Me
+THE **LOGGING WILL STOP WHEN YOU CLOSE YOUR TERMINAL!**
 
-## Licence
+My own suggestion would be to use this application on any windows vds. 
 
-This project is licensed by MIT - See [LICENSE FILE](LICENSE) for details.
+Unfortunately, **it does not support linux at the moment.**
 
-please star! ><
+## Licence:
 
-```
-after 
+This project is licensed under the MIT licence. See [LICENSE FILE](LICENSE) for details.
 
-```javascript
-npm start
-```
-
-Scan the QR code that appears on the terminal\n
-!!!If you close the terminal, the logging process will not continue working.!!!
-
-## Contributors
-
-Me
-
-## Licence
-
-This project is licensed by MIT - See [LICENSE FILE](LICENSE) for details.
-
-please star! ><
+Please star! 
