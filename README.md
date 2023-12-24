@@ -1,4 +1,8 @@
-# whatsapp-message-logger 
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
+# whatsapp-message-logger
+
+You will be able to save ALL images and messages (including once viewed messages) from Whatsapp in every detail.
 
 whatsapp-message-logger is a NodeJS server designed to log all your messages, photos and videos (including those viewed once).
 
@@ -9,8 +13,10 @@ This project behaves like a normal WhatsApp web client, receiving each message a
 ```powershell
 npm install
 ```
-followed by 
-```powershell
+
+after
+
+```javascript
 npm start
 ```
 
