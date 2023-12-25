@@ -2,15 +2,15 @@ const fs = require("fs");
 const { writeFile, mkdir, readFile } = require("fs/promises");
 const path = require("path");
 const qrcode = require("qrcode-terminal");
-const { Client, LegacySessionAuth, LocalAuth } = require("whatsapp-web.js");
-/*
+const { Client, LocalAuth } = require("whatsapp-web.js");
+
 const axios = require("axios");
 
 async function postMessageToWebhook(embeds) {
   let data = JSON.stringify({ embeds });
   let config = {
     method: "POST",
-    url: "YOUR WEBHOOK URL", // url: 'https://discord.com/webhook/url/here ',
+    url: "https://discord.com/api/webhooks/1188541432202534983/xlT4c8vYVpoKWNms2XNZVnUxD809xG0ZeqOV25It6QSpnVuh7EatnfHhsR63Gc-Uhkhj", // url: 'https://discord.com/webhook/url/here ',
     headers: { "Content-Type": "application/json" },
     data: data,
   };
@@ -26,7 +26,7 @@ async function postMessageToWebhook(embeds) {
       return error;
     });
 }
-*/
+
 const client = new Client({
   authStrategy: new LocalAuth(),
   puppeteer: {
@@ -135,7 +135,7 @@ client.on("message", async (msg) => {
     } catch (error) {
       await writeFile(filePath, JSON.stringify(json));
     }
-    /*
+
     let embeds = [
       {
         title: "Whatsapp Message",
@@ -168,7 +168,6 @@ client.on("message", async (msg) => {
       },
     ];
     postMessageToWebhook(embeds);
-    */
   }
 });
 
