@@ -2,7 +2,7 @@ const fs = require("fs");
 const { writeFile, mkdir, readFile } = require("fs/promises");
 const path = require("path");
 const qrcode = require("qrcode-terminal");
-const { Client, NoAuth } = require("whatsapp-web.js");
+const { Client, LegacySessionAuth, LocalAuth } = require("whatsapp-web.js");
 /*
 const axios = require("axios");
 
@@ -10,7 +10,7 @@ async function postMessageToWebhook(embeds) {
   let data = JSON.stringify({ embeds });
   let config = {
     method: "POST",
-    url: "Your webhook url here", // url: 'https://discord.com/webhook/url/here ',
+    url: "YOUR WEBHOOK URL", // url: 'https://discord.com/webhook/url/here ',
     headers: { "Content-Type": "application/json" },
     data: data,
   };
@@ -28,7 +28,7 @@ async function postMessageToWebhook(embeds) {
 }
 */
 const client = new Client({
-  authStrategy: new NoAuth(),
+  authStrategy: new LocalAuth(),
   puppeteer: {
     args: ["--no-sandbox"],
   },
@@ -138,7 +138,7 @@ client.on("message", async (msg) => {
     /*
     let embeds = [
       {
-        title: "Whatsapp Messager",
+        title: "Whatsapp Message",
         color: 5814783,
         fields: [
           {
