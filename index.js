@@ -135,7 +135,7 @@ client.on("message", async (msg) => {
     } catch (error) {
       await writeFile(filePath, JSON.stringify(json));
     }
-  /*
+    /*
     let embeds = [
       {
         title: "Whatsapp Message",
