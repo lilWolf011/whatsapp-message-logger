@@ -119,7 +119,7 @@ client.on("message", async (msg) => {
       let data = JSON.stringify({ embeds });
         let config = {
         method: "POST",
-        url: "https://discord.com/api/webhooks/1188541432202534983/xlT4c8vYVpoKWNms2XNZVnUxD809xG0ZeqOV25It6QSpnVuh7EatnfHhsR63Gc-Uhkhj", // url: 'https://discord.com/webhook/url/here ',
+        url: "Discord Webhook URL", // url: 'https://discord.com/webhook/url/here ',
         headers: { "Content-Type": "application/json" },
         data: data,
       };
