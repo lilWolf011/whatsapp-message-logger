@@ -1,32 +1,8 @@
 const fs = require("fs");
-const { writeFile, mkdir, readFile } = require("fs/promises");
 const path = require("path");
 const qrcode = require("qrcode-terminal");
-const { Client, LegacySessionAuth, LocalAuth } = require("whatsapp-web.js");
-/*
-const axios = require("axios");
+const { Client, LocalAuth } = require("whatsapp-web.js");
 
-async function postMessageToWebhook(embeds) {
-  let data = JSON.stringify({ embeds });
-  let config = {
-    method: "POST",
-    url: "YOUR WEBHOOK URL", // url: 'https://discord.com/webhook/url/here ',
-    headers: { "Content-Type": "application/json" },
-    data: data,
-  };
-
-  //Send the request
-  axios(config)
-    .then((response) => {
-      console.log("Webhook delivered successfully");
-      return response;
-    })
-    .catch((error) => {
-      console.log(error);
-      return error;
-    });
-}
-*/
 const client = new Client({
   authStrategy: new LocalAuth(),
   puppeteer: {
@@ -52,7 +28,6 @@ client.on("message", async (msg) => {
     .replace(/:/g, "_")
     .split(" ")[1]
     .split(".")[0];
-  const fullDate = date + "_" + formattedTime;
   //console.log(msg["_data"]);
   const person = msg._data.notifyName;
   var phoneNumber;
@@ -75,7 +50,7 @@ client.on("message", async (msg) => {
           `${phoneNumber}_${person}`,
           date,
         );
-        await mkdir(folder, { recursive: true });
+        fs.mkdirSync(folder, { recursive: true });
         const filename = path.join(
           folder,
           `${formattedTime}_${msg.id.id}.${media.mimetype.split("/")[1]}`,
@@ -95,13 +70,13 @@ client.on("message", async (msg) => {
           `${phoneNumber}_${person}`,
           date,
         );
-        await mkdir(folder, { recursive: true });
+        fs.mkdirSync(folder, { recursive: true });
         const filename = path.join(
           folder,
           `${formattedTime} ${msg.id.id}.${media.mimetype.split("/")[1]}`,
         );
 
-        await writeFile(filename, Buffer.from(media.data, "base64"), "binary");
+        fs.writeFileSync(filename, Buffer.from(media.data, "base64"), "binary");
         console.log(
           `${media.mimetype.split("/")[0]} saved successfully:`,
           filename,
@@ -125,17 +100,40 @@ client.on("message", async (msg) => {
     ];
 
     const dir = "./text";
-    await mkdir(dir, { recursive: true });
+    fs.mkdirSync(dir, { recursive: true });
     const filePath = path.join(__dirname, dir, "text.json");
 
     try {
-      const data = JSON.parse(await readFile(filePath, "utf8"));
+      const data = JSON.parse(fs.readFileSync(filePath, "utf8"));
       const jsonArray = [...data, ...json];
-      await writeFile(filePath, JSON.stringify(jsonArray));
+      fs.writeFileSync(filePath, JSON.stringify(jsonArray));
     } catch (error) {
-      await writeFile(filePath, JSON.stringify(json));
+      console.log("error yazıo")
+      console.log(error);
+      fs.writeFileSync(filePath, JSON.stringify(json));
     }
-    /*
+
+    /* Send the message to discord
+    const axios = require("axios");
+    async function postMessageToWebhook(embeds) {
+      let data = JSON.stringify({ embeds });
+        let config = {
+        method: "POST",
+        url: "https://discord.com/api/webhooks/1188541432202534983/xlT4c8vYVpoKWNms2XNZVnUxD809xG0ZeqOV25It6QSpnVuh7EatnfHhsR63Gc-Uhkhj", // url: 'https://discord.com/webhook/url/here ',
+        headers: { "Content-Type": "application/json" },
+        data: data,
+      };
+       axios(config)
+        .then((response) => {
+          console.log("Webhook delivered successfully");
+          return response;
+        })
+          .catch((error) => {
+          console.log(error);
+          return error;
+        });
+    }
+    const fullDate = date + " " + formattedTime.replace(/_/g, ":");
     let embeds = [
       {
         title: "Whatsapp Message",
