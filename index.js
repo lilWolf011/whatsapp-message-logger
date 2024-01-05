@@ -108,7 +108,7 @@ client.on("message", async (msg) => {
       const jsonArray = [...data, ...json];
       fs.writeFileSync(filePath, JSON.stringify(jsonArray));
     } catch (error) {
-      console.log("error yazıo")
+      console.log("error yazıo");
       console.log(error);
       fs.writeFileSync(filePath, JSON.stringify(json));
     }
