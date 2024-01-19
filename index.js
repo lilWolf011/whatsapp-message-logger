@@ -60,7 +60,7 @@ client.on("message", async (msg) => {
     // 'participant' alanı tanımlı değilse DM'DİR
     var phoneNumber = msg._data.from.replace(/@c.us/g, "");
   }
-/*
+  /*
   let embeds = [
     {
       title: "Whatsapp Message",
@@ -97,16 +97,27 @@ client.on("message", async (msg) => {
     const media = await msg.downloadMedia();
     if (msg.type === "image" || msg.type === "video" || msg.type === "ptt") {
       try {
-        const folder = path.join(process.cwd(), media.mimetype.split("/")[0], `${phoneNumber}_${person}`, date,);
+        const folder = path.join(
+          process.cwd(),
+          media.mimetype.split("/")[0],
+          `${phoneNumber}_${person}`,
+          date,
+        );
 
         fs.mkdirSync(folder, { recursive: true });
 
-        let splited = media.mimetype.split("/")['1'];
-        const filename = path.join(folder,`${formattedTime} ${msg.id.id}.${msg.type === "ptt" ? (splited.split(";")[0]) : splited}`,);
-    
+        let splited = media.mimetype.split("/")["1"];
+        const filename = path.join(
+          folder,
+          `${formattedTime} ${msg.id.id}.${msg.type === "ptt" ? splited.split(";")[0] : splited}`,
+        );
+
         fs.writeFileSync(filename, Buffer.from(media.data, "base64"), "binary");
 
-        console.log(`${media.mimetype.split("/")[0]} saved successfully:`, filename,);
+        console.log(
+          `${media.mimetype.split("/")[0]} saved successfully:`,
+          filename,
+        );
 
         //embeds[0].fields[3].value = filename;
         //postMessageToWebhook(embeds);
@@ -136,7 +147,7 @@ client.on("message", async (msg) => {
       const jsonArray = [...data, ...json];
       fs.writeFileSync(filePath, JSON.stringify(jsonArray));
     } catch (error) {
-      console.log("error yazıo")
+      console.log("error yazıo");
       console.log(error);
       fs.writeFileSync(filePath, JSON.stringify(json));
     }
