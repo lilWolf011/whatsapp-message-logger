@@ -11,11 +11,11 @@ whatsapp-message-logger is a NodeJS server designed to log all your messages, ph
 This project behaves like a normal WhatsApp web client, receiving each message and storing it locally. After downloading the packages and running the application, go to WhatsApp and scan the QR code!
 
 ## Usage
+```git clone https://github.com/lilWolf011/whatsapp-message-logger.git```
+&
+```npm install```
 
-`git clone https://github.com/lilWolf011/whatsapp-message-logger.git`
-`npm install`
-
-You can easily start it by saying `npm start` and then you can read the QR code that appears in the terminal to Whatsapp.
+You can easily start it by saying ```npm start``` and then you can read the QR code that appears in the terminal to Whatsapp.
 
 ## Important
 
